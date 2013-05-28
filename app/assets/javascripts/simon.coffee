@@ -30,12 +30,12 @@ $( document ).ready ->
   $('#progress_bar').attr( 'time', time - 200 )
   $('#progress_bar').attr( 'style', "width:#{ 100 * time / full_time }%;")
 
-  if time > full_time / 3 and time < 2 * full_time / 3 and $('#progress_bar').parent().hasClass( 'progress-success' )
-    $('#progress_bar').parent().removeClass( 'progress-success' )
-    $('#progress_bar').parent().addClass( 'progress-warning' )
-  else if time < full_time / 3 and $('#progress_bar').parent().hasClass( 'progress-warning' )
-    $('#progress_bar').parent().removeClass( 'progress-warning' )
-    $('#progress_bar').parent().addClass( 'progress-danger' )
+  if time > full_time / 3 and time < 2 * full_time / 3 and $('#progress_bar').hasClass( 'high' )
+    $('#progress_bar').removeClass( 'high' )
+    $('#progress_bar').addClass( 'med' )
+  else if time < full_time / 3 and $('#progress_bar').hasClass( 'med' )
+    $('#progress_bar').removeClass( 'med' )
+    $('#progress_bar').addClass( 'low' )
 
   if time >= 1
     setTimeout( progress_bar_countdown, 200 )

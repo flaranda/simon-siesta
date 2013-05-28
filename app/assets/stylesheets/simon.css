@@ -1,0 +1,164 @@
+@-webkit-keyframes start {
+  0%{-webkit-opacity: 1}
+  50%{-webkit-opacity: 0}
+  100%{-webkit-opacity: 1}
+}
+@-webkit-keyframes x-treme {
+  0%{-webkit-transform:rotate(0deg);}
+  25%{-webkit-transform:rotate(90deg);}
+  50%{-webkit-transform:rotate(180deg);}
+  75%{-webkit-transform:rotate(90deg);}
+  100%{-webkit-transform:rotate(360deg);}
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#191919));
+  font-family: 'Orbitron', sans-serif;
+}
+#logo {
+  width: 1600px;
+  heiht: 500px;
+  display: block;
+  margin: auto;
+}
+#start {
+  color: red;
+  font-size: 3em;
+  text-align: center;
+  -webkit-animation: start 2s infinite;
+  margin-top: 50px;
+}
+footer.intro {
+  width: 100%;
+  color: white;
+  text-align: center;
+  position: fixed;
+  bottom: 5px;
+}
+footer.game {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  background-color: #333;
+  height: 25px;
+  padding: 5px;
+  width: 100%;
+  margin: 0;
+}
+footer.game span {
+  height: 100%;
+  display: inline-block;
+  -webkit-animation: bar 10s infinite ease;
+}
+footer.game span.low {
+  background-color: red;
+}
+footer.game span.med {
+  background-color: orange;
+}
+footer.game span.high {
+  background-color: green;
+}
+#simon {
+  width: 500px;
+  height: 500px;
+  margin: 20px auto;
+  display: block;
+}
+#simon.x-treme {
+  -webkit-animation: x-treme 5s infinite ease;
+}
+#simon .key {
+  margin: 0;
+  float: left;
+  width: 250px;
+  height: 250px;
+}
+#simon .green {
+  background-image: url('verde.png');
+}
+#simon .red {
+  background-image: url('rojo.png');
+}
+#simon .yellow {
+  background-image: url('amarillo.png');
+}
+#simon .blue {
+  background-image: url('azul.png');
+}
+#simon .green.selected {
+  background-image: url('verde2.png');
+}
+#simon .red.selected {
+  background-image: url('rojo2.png');
+}
+#simon .yelow.selected {
+  background-image: url('amarillo2.png');
+}
+#simon .blue.selected{
+  background-image: url('azul2.png');
+}
+aside {
+  position: absolute;
+  font-family: 'Orbitron', sans-serif;
+  top: 50px;
+  right: 20px;
+  color: red;
+  font-size: 2em;
+  padding: 5px;
+  background-color: red;
+}
+aside:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 5px;
+  left: 5px;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid red;
+  border-right: 20px solid transparent;
+}
+aside:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50px;
+  right: 0px;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid #000;
+  border-left: 20px solid transparent;
+}
+aside div {
+  color: red;
+  padding: 25px 30px 20px 30px;
+  text-align: center;
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#262626), color-stop(46%,#0d0d0d), color-stop(50%,#232323), color-stop(53%,#0a0a0a), color-stop(76%,#424242), color-stop(87%,#1c1c1c), color-stop(100%,#1b1b1b));
+}
+aside div:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 0;
+  left: 0;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid #000;
+  border-right: 20px solid transparent;
+}
+aside div:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 45px;
+  right: 5px;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid red;
+  border-left: 20px solid transparent;
+}
