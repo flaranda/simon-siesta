@@ -96,7 +96,7 @@ footer.game span.high {
 #simon .red.selected {
   background-image: url('rojo2.png');
 }
-#simon .yelow.selected {
+#simon .yellow.selected {
   background-image: url('amarillo2.png');
 }
 #simon .blue.selected{
@@ -161,4 +161,18 @@ aside div:after {
   border-top: 20px solid transparent;
   border-bottom: 20px solid red;
   border-left: 20px solid transparent;
+}
+#level {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  color: #fff;
+  font-size: 1.5em;
+}
+#messages {
+  width: 600px;
+  margin: 50px auto;
+  color: #fff;
+  font-size: 1.3em;
+  text-align: center;
 }
