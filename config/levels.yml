@@ -1,0 +1,6 @@
+level_1:
+  time: 5000
+  sequence: [ 'red' ]
+level_2:
+  time: 5000
+  sequence: [ 'red', 'green' ]
