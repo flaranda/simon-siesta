@@ -1,9 +1,10 @@
-window.level = 2
+window.level = 1
 window.sequence = []
 window.playable_sequence = undefined
 window.playing_sequence = false
 window.playing_game = false
 window.player_sequence = []
+window.win = false
 
 $( document ).ready ->
   pusher = new Pusher( '302fb53f53282bcb6c79' )
@@ -17,7 +18,7 @@ $( document ).ready ->
 
   if window.location.pathname is '/play'
     begin_game()
-    
+
 ########################################## New game window movements
 
 @new_game_button_pushed = ( data ) ->
@@ -39,7 +40,7 @@ $( document ).ready ->
 
 @begin_game = () ->
   reset_score()
-  next_level()
+  setTimeout( next_level, 1000 )
 
 @next_level = () ->
   $.ajax(
@@ -56,6 +57,7 @@ $( document ).ready ->
       window.player_sequence = JSON.parse( JSON.stringify( window.sequence ) )
       window.playing_sequence = true
       window.playing_game = false
+      window.win = false
       play_sequence_and_begin_level()
       console.log( "Presta atencion..." )
   )
@@ -63,11 +65,15 @@ $( document ).ready ->
 @check_player_sequence = ( key ) ->
   seq_key = window.player_sequence.pop()
 
-  console.log seq_key + " " + key
-
   if seq_key == key
     if window.player_sequence.length == 0
-      console.log "lol"
+      window.win = true
+      window.playing_game = false
+      window.level = window.level + 1
+      add_score( determine_score() )
+      setTimeout( next_level, 2000 )
+      # Correct sequence
+      console.log "Correcto"
   else
     console.log window.sequence
     window.player_sequence = JSON.parse( JSON.stringify( window.sequence ) )
@@ -99,6 +105,21 @@ $( document ).ready ->
 @reset_score = () ->
   $( '#score' ).empty()
   $( '#score' ).append( formatted_score( 0 ) )
+  $( '#progress_bar' ).removeClass( 'med' )
+  $( '#progress_bar' ).removeClass( 'low' )
+  $( '#progress_bar' ).addClass( 'high' )
+
+@determine_score = () ->
+  time = $( '#progress_bar' ).attr( 'time' )
+
+  if $( '#progress_bar' ).hasClass( 'high' )
+    score = time * 1
+  else if $( '#progress_bar' ).hasClass( 'med' )
+    score = time * 0.5
+  else if $( '#progress_bar' ).hasClass( 'low' )
+    score = time * 0.25
+
+  Math.round( score )
 
 @add_score = ( score ) ->
   old_score = parseInt( $( '#score' ).html() )
@@ -135,7 +156,7 @@ $( document ).ready ->
       $( '#progress_bar' ).removeClass( 'med' )
       $( '#progress_bar' ).addClass( 'low' )
 
-  if time >= 1
+  if time >= 1 and not window.win
     setTimeout( progress_bar_countdown, 10 )
-  else
-    # game over
+  else if time <= 0
+    window.location = '/'
