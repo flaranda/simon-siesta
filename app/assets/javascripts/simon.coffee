@@ -51,6 +51,7 @@ $( document ).ready ->
     dataType: "json",
     success: ( data ) ->
       set_progress_bar_time( data["time"] )
+      set_level_label()
       window.sequence = data["sequence"].reverse()
       console.log window.sequence
       window.playable_sequence = JSON.parse( JSON.stringify( window.sequence ) )
@@ -59,7 +60,7 @@ $( document ).ready ->
       window.playing_game = false
       window.win = false
       play_sequence_and_begin_level()
-      console.log( "Presta atencion..." )
+      set_message( "Presta atencion..." )
   )
 
 @check_player_sequence = ( key ) ->
@@ -72,12 +73,10 @@ $( document ).ready ->
       window.level = window.level + 1
       add_score( determine_score() )
       setTimeout( next_level, 2000 )
-      # Correct sequence
-      console.log "Correcto"
+      set_message( "Correcto" )
   else
-    console.log window.sequence
-    window.player_sequence = JSON.parse( JSON.stringify( window.sequence ) )
-    console.log "Reiniciado: " + window.player_sequence
+    window.player_sequence = JSON.parse( JSON.stringify( window.sequence ) ).reverse()
+    set_message( "Empieza de nuevo" )
 
 @play_sequence_and_begin_level = () ->
   key = window.playable_sequence.pop()
@@ -91,7 +90,7 @@ $( document ).ready ->
     begin_level()
 
 @begin_level = () ->
-  console.log( "Repite la secuencia" )
+  set_message( "Repite la secuencia" )
   window.playing_game = true
   progress_bar_countdown()
 
@@ -140,6 +139,9 @@ $( document ).ready ->
 @set_progress_bar_time = ( time ) ->
   $( '#progress_bar' ).attr( 'full_time', time )
   $( '#progress_bar' ).attr( 'time', time )
+  $( '#progress_bar' ).removeClass( 'med' )
+  $( '#progress_bar' ).removeClass( 'low' )
+  $( '#progress_bar' ).addClass( 'high' )
 
 @progress_bar_countdown = () ->
   time = $( '#progress_bar' ).attr( 'time' )
@@ -160,3 +162,11 @@ $( document ).ready ->
     setTimeout( progress_bar_countdown, 10 )
   else if time <= 0
     window.location = '/'
+
+@set_message = ( message ) ->
+  $( '#messages' ).empty()
+  $( '#messages' ).append( message )
+
+@set_level_label = () ->
+  $( '#level' ).empty()
+  $( '#level' ).append( "NIVEL " + window.level )
