@@ -4,6 +4,7 @@ window.playable_sequence = undefined
 window.playing_sequence = false
 window.playing_game = false
 window.player_sequence = []
+window.xtreme = false
 window.win = false
 
 $( document ).ready ->
@@ -31,9 +32,11 @@ $( document ).ready ->
   if data is 'white'
     window.location = '/'
   else if data is 'black'
-    window.playing_game = not window.playing_game
+    window.xtreme = not window.xtreme
+    xtreme_mode( window.xtreme )
   else if window.playing_game is true
     highlight_simon( data, true )
+    play_button_sound( data )
     check_player_sequence( data )
 
 ########################################## Game logic
@@ -83,6 +86,7 @@ $( document ).ready ->
 
   if key
     highlight_simon( key )
+    play_button_sound( key )
     setTimeout( play_sequence_and_begin_level, 500 * 1.5 )
   else
     window.playing_sequence = false
@@ -170,3 +174,6 @@ $( document ).ready ->
 @set_level_label = () ->
   $( '#level' ).empty()
   $( '#level' ).append( "NIVEL " + window.level )
+
+@play_button_sound = ( color ) ->
+  document.getElementById( "#{color}_sound" ).play()
