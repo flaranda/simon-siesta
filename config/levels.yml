@@ -8,8 +8,23 @@ level_3:
   time: 5000
   sequence: [ 'red', 'green', 'yellow' ]
 level_4:
-  time: 5000
+  time: 7000
   sequence: [ 'red', 'green', 'yellow', 'blue' ]
 level_5:
+  time: 7000
+  sequence: [ 'green', 'blue', 'yellow', 'red' ]
+level_6:
+  time: 4000
+  sequence: [ 'yellow', 'blue' ]
+level_7:
+  time: 9000
+  sequence: [ 'yellow', 'red', 'yellow', 'red', 'blue' ]
+level_8:
   time: 5000
+  sequence: [ 'blue', 'red', 'red', 'yellow', 'green' ]
+level_9:
+  time: 7000
+  sequence: [ 'blue', 'red', 'red', 'yellow', 'green', 'red', 'yellow' ]
+level_10:
+  time: 4000
   sequence: [ 'red', 'green', 'yellow', 'blue' ]
